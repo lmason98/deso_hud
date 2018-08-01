@@ -5,6 +5,7 @@
 deso.col.dark = Color(48, 48, 48)
 deso.col.light = Color(78, 78, 78)
 deso.col.outline = Color(28, 28, 28)
+deso.col.text = Color(74, 204, 247)
 
 local toHide = 
 {

@@ -1,6 +1,6 @@
 surface.CreateFont("deso_hud_bold", {
 	font = "Roboto",
-	size = 20,
+	size = 22,
 	weight = 700,
 	antialias = true,
 	shadow = false

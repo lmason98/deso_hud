@@ -17,7 +17,7 @@ function deso.hud.Main()
 	local hp, ap = LocalPlayer():Health(), LocalPlayer():Armor()
 	local wallet = DarkRP.formatMoney(LocalPlayer():getDarkRPVar("money"))
 	local plyProps = "Prop Count: " .. LocalPlayer():GetCount("props")
-	local plyJob = team.GetName(LocalPlayer():Team()) .. "(" .. DarkRP.formatMoney(LocalPlayer():getDarkRPVar("salary")) .. ")"
+	local plyJob = team.GetName(LocalPlayer():Team()) .. " (" .. DarkRP.formatMoney(LocalPlayer():getDarkRPVar("salary")) .. ")"
 
 	surface.SetFont("deso_hud") -- so surface.GetTextSize fucking works properly
 	local jobW = surface.GetTextSize(plyJob) + 24
@@ -42,7 +42,6 @@ function deso.hud.Main()
 
 	surface.SetDrawColor(deso.col.outline) -- dark outline
 	surface.DrawOutlinedRect(x - 1, y - 1, w + 2, h + 2) -- main outline
-	surface.DrawOutlinedRect(x - 2, y - 2, w + 4, h + 4) -- main outline
 	surface.DrawOutlinedRect(x + p, y + p, w - (p * 2), b) -- health/armor outline
 	surface.DrawLine(x + (w / 2), y + p, x + (w / 2), y + p + b) -- health/armor outline
 	surface.DrawOutlinedRect(x + p, y + (p * 2) + b, 30 + surface.GetTextSize(wallet), b) -- wallet outline
@@ -62,8 +61,8 @@ function deso.hud.Main()
 	draw.SimpleText(wallet, "deso_hud", x + p + 24, y + p + 39, Color(255, 255, 255))
 	draw.SimpleText(plyProps, "deso_hud", x + (w / 2), y + p + 39, Color(255, 255, 255), TEXT_ALIGN_CENTER)
 	draw.SimpleText(plyJob, "deso_hud", x + w - p - 5, y + p + 39, Color(255, 255, 255), TEXT_ALIGN_RIGHT)
-	draw.SimpleText(math.Clamp(hp, 0, hp), "deso_hud_bold", x + (w / 4), y + p + 2, Color(255, 255, 255), TEXT_ALIGN_CENTER)
-	draw.SimpleText(math.Clamp(ap, 0, ap), "deso_hud_bold", x + (w / 2) + (w / 4), y + p + 2, Color(255, 255, 255), TEXT_ALIGN_CENTER)
+	draw.SimpleTextOutlined(math.Clamp(hp, 0, hp), "deso_hud_bold", x + (w / 4), y + p + 2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, deso.col.outline)
+	draw.SimpleTextOutlined(math.Clamp(ap, 0, ap), "deso_hud_bold", x + (w / 2) + (w / 4), y + p + 2, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP, 1, deso.col.outline)
 end
 
 local y = scrH - 100
@@ -112,9 +111,10 @@ local h = 130
 function deso.hud.Agenda()
 	if (LocalPlayer():isCP()) then
 		local agendaText = LocalPlayer():getDarkRPVar("agenda")
-		agendaText = DarkRP.textWrap(agendaText, "deso_hud", w)
 
 		if (agendaText && agendaText != "") then
+			agendaText = DarkRP.textWrap(agendaText, "deso_hud", w)
+
 			surface.SetDrawColor(deso.col.light)
 			surface.DrawRect(x, y, w, h)
 
@@ -122,9 +122,10 @@ function deso.hud.Agenda()
 			surface.DrawRect(x, y, w, 30)
 
 			surface.SetDrawColor(deso.col.outline)
+			surface.DrawLine(x, y + 30, x + w, y + 30)
 			surface.DrawOutlinedRect(x, y, w, h)
 
-			draw.SimpleText("Police Agenda", "deso_hud_bold", x + (p * 2), y + 5, Color(255, 255, 255))
+			draw.SimpleTextOutlined("Police Agenda", "deso_hud_bold", x + (p * 2), y + 5, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, deso.col.outline)
 			draw.DrawText(agendaText, "deso_hud", x + p, y + 30 + 5, Color(255, 255, 255))
 		end
 	end
