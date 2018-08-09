@@ -145,23 +145,25 @@ function deso.hud.Sprint()
 	end
 end
 
-function deso.hud.OverHead(ply)
-	if (ply && ply != LocalPlayer()) then
-		local nick = ply:Nick()
-		local pos = ply:GetBonePosition(ply:LookupBone("ValveBiped.Bip01_Head1"))
-		local ang = EyeAngles()
+function deso.hud.OverHead()
+	for _, ent in pairs(ents.FindInSphere(LocalPlayer():GetPos(), 200)) do
+		if (ent:IsPlayer() && ent != LocalPlayer()) then
+			local nick = ent:Nick()
+			local pos = ent:GetBonePosition(ent:LookupBone("ValveBiped.Bip01_Head1"))
+			local ang = EyeAngles()
 
-		pos = pos + Vector(0, 0, 15)
+			pos = pos + Vector(0, 0, 15)
 
-		ang:RotateAroundAxis(ang:Right(), 90)
-		ang:RotateAroundAxis(ang:Up(), -90)
+			ang:RotateAroundAxis(ang:Right(), 90)
+			ang:RotateAroundAxis(ang:Up(), -90)
 
-		cam.Start3D2D(pos + ang:Up() * 6 + ang:Forward() * -1, ang, 0.05)
-			draw.SimpleTextOutlined(nick, "deso_hud_clip", 25, 0, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 3, Color(0, 0, 0))
-		
-			surface.SetMaterial(circle)
-			surface.SetDrawColor(255, 255, 255)
-			surface.DrawTexturedRect(0, 50, 50, 50)
-		cam.End3D2D()
+			cam.Start3D2D(pos + ang:Up() * 6 + ang:Forward() * -1, ang, 0.05)
+				draw.SimpleTextOutlined(nick, "deso_hud_clip", 25, 0, Color(255, 255, 255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 3, Color(0, 0, 0))
+			
+				surface.SetMaterial(circle)
+				surface.SetDrawColor(255, 255, 255)
+				surface.DrawTexturedRect(0, 50, 50, 50)
+			cam.End3D2D()
+		end
 	end
 end
