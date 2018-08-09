@@ -48,15 +48,3 @@ function deso.hud.CalcArmorWidth(width, value)
 
 	return math.Clamp(math.Round(smoothArmor * num), 0, width)
 end
-
-function deso.hud.GetPropCount()
-	local count = 0
-
-	for k, v in pairs(ents.FindByClass("prop_physics")) do
-		if (v:CPPIsSetOwner(LocalPlayer())) then
-			count = count + 1
-		end
-	end
-
-	return count
-end

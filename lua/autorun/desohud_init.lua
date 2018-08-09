@@ -4,6 +4,7 @@ if (SERVER) then
 	deso.col = deso.col || {}
 
 	resource.AddFile "materials/deso_hud/sprint.png"
+	resource.AddFile "materials/deso_hud/circle.png"
 
 	AddCSLuaFile "deso_hud/client/cl_fonts.lua"
 	AddCSLuaFile "deso_hud/client/cl_desohud.lua"
