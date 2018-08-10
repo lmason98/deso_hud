@@ -4,7 +4,6 @@ local money = Material("icon16/money.png")
 local job = Material("icon16/briefcase.png")
 local heart = Material("icon16/heart.png")
 local shield = Material("icon16/shield.png")
-local sprint = Material("deso_hud/sprint.png")
 local circle = Material("deso_hud/circle.png")
 
 local w = 600
@@ -131,19 +130,6 @@ function deso.hud.Agenda()
 			draw.SimpleTextOutlined("Police Agenda", "deso_hud_bold", x + (p * 2), y + 5, Color(255, 255, 255), TEXT_ALIGN_LEFT, TEXT_ALIGN_TOP, 1, deso.col.outline)
 			draw.DrawText(agendaText, "deso_hud", x + p, y + 30 + 5, Color(255, 255, 255))
 		end
-	end
-end
-
-local w = 60
-local h = 60
-local x = (scrW / 2) - 300 - w - p
-local y = scrH - 70
-
-function deso.hud.Sprint()
-	if (LocalPlayer():KeyDown(IN_SPEED)) then
-		surface.SetMaterial(sprint)
-		surface.SetDrawColor(255, 255, 255)
-		surface.DrawTexturedRect(x, y, w, h)
 	end
 end
 

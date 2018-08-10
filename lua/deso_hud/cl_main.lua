@@ -25,7 +25,6 @@ hook.Add("HUDPaint", "deso_hud", function()
 	deso.hud.Main()
 	deso.hud.Ammo()
 	deso.hud.Agenda()
-	deso.hud.Sprint()
 end)
 
 hook.Add("PostDrawOpaqueRenderables", "deso_hud_overhead", deso.hud.OverHead)
