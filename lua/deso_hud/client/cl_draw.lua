@@ -79,27 +79,29 @@ local blacklist =
 function deso.hud.Ammo()
 	if (LocalPlayer():Alive() && LocalPlayer():IsValid()) then
 		local wep = LocalPlayer():GetActiveWeapon()
-		local clip = wep:Clip1()
-		local reserve = LocalPlayer():GetAmmoCount(wep:GetPrimaryAmmoType())
-		
-		surface.SetFont("deso_hud_clip")
-		local clip_w = surface.GetTextSize(clip)
-
-		surface.SetFont("deso_hud_reserve")
-		local reserve_w = surface.GetTextSize(reserve)
-
-		local w = (p * 3) + clip_w + reserve_w
-		local x = scrW - 20 - w
-
-		if (wep:IsValid() && wep:Clip1() != -1 && !blacklist[wep:GetClass()]) then
-			surface.SetDrawColor(deso.col.dark)
-			surface.DrawRect(x, y, w, h)
+		if (wep:IsValid()) then
+			local clip = wep:Clip1()
+			local reserve = LocalPlayer():GetAmmoCount(wep:GetPrimaryAmmoType())
 			
-			surface.SetDrawColor(deso.col.outline)
-			surface.DrawOutlinedRect(x, y, w, h)
-			
-			draw.SimpleText(clip, "deso_hud_clip", x + p, y + 5, Color(255, 255, 255))
-			draw.SimpleText(reserve, "deso_hud_reserve", x + (p * 2) + clip_w, y + 28, Color(255, 255, 255))
+			surface.SetFont("deso_hud_clip")
+			local clip_w = surface.GetTextSize(clip)
+
+			surface.SetFont("deso_hud_reserve")
+			local reserve_w = surface.GetTextSize(reserve)
+
+			local w = (p * 3) + clip_w + reserve_w
+			local x = scrW - 20 - w
+
+			if (wep:IsValid() && wep:Clip1() != -1 && !blacklist[wep:GetClass()]) then
+				surface.SetDrawColor(deso.col.dark)
+				surface.DrawRect(x, y, w, h)
+				
+				surface.SetDrawColor(deso.col.outline)
+				surface.DrawOutlinedRect(x, y, w, h)
+				
+				draw.SimpleText(clip, "deso_hud_clip", x + p, y + 5, Color(255, 255, 255))
+				draw.SimpleText(reserve, "deso_hud_reserve", x + (p * 2) + clip_w, y + 28, Color(255, 255, 255))
+			end
 		end
 	end
 end
