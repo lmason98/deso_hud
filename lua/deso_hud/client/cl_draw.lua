@@ -3,7 +3,7 @@ local scrW, scrH = ScrW(), ScrH()
 local money = Material("icon16/money.png")
 local job = Material("icon16/briefcase.png")
 local heart = Material("icon16/heart.png")
-local shield = Material("icon16/shield.png")
+local shield = Material("icon16/shield.png")2w6
 local circle = Material("deso_hud/circle.png")
 
 local w = 600
